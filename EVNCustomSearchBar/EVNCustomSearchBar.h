@@ -92,6 +92,8 @@ typedef NS_ENUM(NSUInteger, EVNCustomSearchBarIconAlign)
  */
 @property (nullable, nonatomic, strong) UIButton *cancelButton;
 
+@property (nonatomic) BOOL isHiddenCancelButton;
+
 /**
  * 输入框的风格
  */

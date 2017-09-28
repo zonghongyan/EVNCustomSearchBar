@@ -57,6 +57,7 @@
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 44);
 
     [self addSubview:self.cancelButton];
+
     [self addSubview:self.textField];
     self.cancelButton.hidden = YES;
 //    self.backgroundColor = [UIColor colorWithRed:0.733 green:0.732 blue:0.756 alpha:1.000];
@@ -288,11 +289,14 @@
     {
         self.iconAlign = EVNCustomSearchBarIconAlignLeft;
     }
-    [UIView animateWithDuration:0.1 animations:^{
-        _cancelButton.hidden = NO;
-        _textField.frame = CGRectMake(7, 7, _cancelButton.frame.origin.x - 7, 30);
-        // _textField.transform = CGAffineTransformMakeTranslation(-_cancelButton.frame.size.width,0);
-    }];
+    if (!_isHiddenCancelButton)
+    {
+        [UIView animateWithDuration:0.1 animations:^{
+            _cancelButton.hidden = NO;
+            _textField.frame = CGRectMake(7, 7, _cancelButton.frame.origin.x - 7, 30);
+            // _textField.transform = CGAffineTransformMakeTranslation(-_cancelButton.frame.size.width,0);
+        }];
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(searchBarShouldBeginEditing:)])
     {
         return [self.delegate searchBarShouldBeginEditing:self];
@@ -323,11 +327,14 @@
     {
         self.iconAlign = EVNCustomSearchBarIconAlignCenter;
     }
-    [UIView animateWithDuration:0.1 animations:^{
-        _cancelButton.hidden = YES;
-        _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
-        // _textField.transform = CGAffineTransformMakeTranslation(-_cancelButton.frame.size.width,0);
-    }];
+    if (!_isHiddenCancelButton)
+    {
+        [UIView animateWithDuration:0.1 animations:^{
+            _cancelButton.hidden = YES;
+            _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
+            // _textField.transform = CGAffineTransformMakeTranslation(-_cancelButton.frame.size.width,0);
+        }];
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(searchBarTextDidEndEditing:)])
     {
         [self.delegate searchBarTextDidEndEditing:self];

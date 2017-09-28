@@ -62,6 +62,7 @@
         [_searchBar setPlaceholder:@"请输入关键字"];  // 搜索框的占位符
         _searchBar.placeholderColor = TextGrayColor;
         _searchBar.delegate = self; // 设置代理
+        _searchBar.isHiddenCancelButton = YES;
         [_searchBar sizeToFit];
     }
     return _searchBar;
