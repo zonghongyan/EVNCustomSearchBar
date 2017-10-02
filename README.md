@@ -5,6 +5,11 @@ Born for iOS 11 SearchBar
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EVNCustomSearchBar.svg)](https://img.shields.io/cocoapods/v/EVNCustomSearchBar.svg)
 [![License](https://img.shields.io/github/license/zonghongyan/EVNCustomSearchBar.svg?style=flat)](https://github.com/zonghongyan/EVNCustomSearchBar/blob/master/LICENSE)
 
+### 预览图
+
+<img src="https://github.com/zonghongyan/EVNCustomSearchBar/blob/master/EVNCustomSearchBarDemo/EVNCustomSearchBar.gif" width="20%" height="20%" alt="Show the figure" >
+
+
 ## Installation
 
 ### CocoaPods
@@ -135,8 +140,3 @@ $ pod install
     [self.searchBar resignFirstResponder];
 }
 ```
-
-### 预览图
-
-<img src="https://github.com/zonghongyan/EVNCustomSearchBar/blob/master/EVNCustomSearchBarDemo/EVNCustomSearchBar.gif" width="20%" height="20%" alt="Show the figure" >
-
