@@ -114,6 +114,7 @@ typedef NS_ENUM(NSUInteger, EVNCustomSearchBarIconAlign)
 @property (nonatomic, strong) UIView *inputView;
 
 - (BOOL)resignFirstResponder;
+- (BOOL)becomeFirstResponder;
 
 - (void)setAutoCapitalizationMode:(UITextAutocapitalizationType)type;
 

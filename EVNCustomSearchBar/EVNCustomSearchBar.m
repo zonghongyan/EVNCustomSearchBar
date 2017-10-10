@@ -60,7 +60,7 @@
 
     [self addSubview:self.textField];
     self.cancelButton.hidden = YES;
-//    self.backgroundColor = [UIColor colorWithRed:0.733 green:0.732 blue:0.756 alpha:1.000];
+    //    self.backgroundColor = [UIColor colorWithRed:0.733 green:0.732 blue:0.756 alpha:1.000];
 
     [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
 }
@@ -122,21 +122,21 @@
 
 - (void)ajustIconWith:(EVNCustomSearchBarIconAlign)iconAlign
 {
-    if (_iconAlign == EVNCustomSearchBarIconAlignCenter)
+    if (_iconAlign == EVNCustomSearchBarIconAlignCenter && ([self.text isKindOfClass:[NSNull class]] || !self.text || [self.text isEqualToString:@""] || self.text.length == 0))
     {
         _iconCenterImgV.hidden = NO;
         _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
         _textField.textAlignment = NSTextAlignmentCenter;
 
         CGSize titleSize; // 输入的内容或者placeholder数据
-        if ([self.text isKindOfClass:[NSNull class]] || !self.text || ![self.text isEqualToString:@""])
-        {
-            titleSize =  [self.text sizeWithAttributes: @{NSFontAttributeName:_textField.font}];
-        }
-        else
-        {
-            titleSize =  [self.placeholder?:@"" sizeWithAttributes: @{NSFontAttributeName:_textField.font}];
-        }
+        //        if ([self.text isKindOfClass:[NSNull class]] || !self.text || [self.text isEqualToString:@""] || self.text.length == 0)
+        //        {
+        //            titleSize =  [self.text sizeWithAttributes: @{NSFontAttributeName:_textField.font}];
+        //        }
+        //        else
+        //        {
+        titleSize =  [self.placeholder?:@"" sizeWithAttributes: @{NSFontAttributeName:_textField.font}];
+        //        }
 
         NSLog(@"----%f", _textField.frame.size.width);
         CGFloat x = _textField.frame.size.width/2.f - titleSize.width/2.f - 30;
@@ -147,12 +147,12 @@
             [_textField addSubview:_iconCenterImgV];
         }
 
-//        [UIView animateWithDuration:1 animations:^{
-            _iconCenterImgV.frame = CGRectMake(x > 0 ?x:0, 0, _iconCenterImgV.frame.size.width, _iconCenterImgV.frame.size.height);
-            _iconCenterImgV.hidden = x > 0 ? NO : YES;
-            _textField.leftView = x > 0 ? nil : _iconImgV;
-            _textField.leftViewMode =  x > 0 ? UITextFieldViewModeNever : UITextFieldViewModeAlways;
-//        }];
+        //        [UIView animateWithDuration:1 animations:^{
+        _iconCenterImgV.frame = CGRectMake(x > 0 ?x:0, 0, _iconCenterImgV.frame.size.width, _iconCenterImgV.frame.size.height);
+        _iconCenterImgV.hidden = x > 0 ? NO : YES;
+        _textField.leftView = x > 0 ? nil : _iconImgV;
+        _textField.leftViewMode =  x > 0 ? UITextFieldViewModeNever : UITextFieldViewModeAlways;
+        //        }];
     }
     else
     {
@@ -207,6 +207,10 @@
     _placeholder = placeholder;
     _textField.placeholder = placeholder;
     _textField.contentMode = UIViewContentModeScaleAspectFit;
+    if (self.placeholderColor)
+    {
+        [self setPlaceholderColor:_placeholderColor];
+    }
     [self setIconAlign:_iconAlign];
 }
 
@@ -250,21 +254,37 @@
 - (void)setPlaceholderColor:(UIColor *)placeholderColor
 {
     _placeholderColor = placeholderColor;
-    NSAssert(_placeholder, @"Please set placeholder before setting placeholdercolor");
+    NSAssert(_placeholderColor, @"Please set placeholder before setting placeholdercolor");
 
     if ([[[UIDevice currentDevice] systemVersion] integerValue] < 6)
     {
         [_textField setValue:_placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
     }
     else
-    {
-        _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:@{NSForegroundColorAttributeName:placeholderColor}];
+    {//TODO: ///asdfasdf
+        //        _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:@{NSForegroundColorAttributeName:placeholderColor}];
+        if ([self.placeholder isKindOfClass:[NSNull class]] || !self.placeholder || [self.placeholder isEqualToString:@""])
+        {
+            //
+        }
+        else
+        {
+            _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:
+                                                @{NSForegroundColorAttributeName:placeholderColor,
+                                                  NSFontAttributeName:_textField.font
+                                                  }];
+        }
     }
 }
 
 - (BOOL)resignFirstResponder
 {
     return [_textField resignFirstResponder];
+}
+
+- (BOOL)becomeFirstResponder
+{
+    return [_textField becomeFirstResponder];
 }
 
 - (void)cancelButtonTouched
@@ -381,7 +401,7 @@
 {
     if ([object isEqual:self] && [keyPath isEqualToString:@"frame"])
     {
-//        _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
+        //        _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
         NSLog(@"----%f", self.frame.size.width);
         [self ajustIconWith:_iconAlign];
     }
