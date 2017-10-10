@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EVNCustomSearchBar"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Born for iOS 11 SearchBar"
 
   # This description is used to generate tags and improve search results.
