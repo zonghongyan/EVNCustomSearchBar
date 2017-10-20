@@ -16,6 +16,14 @@
 
 @implementation LeftViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // 弹出键盘
+    [self.searchBar becomeFirstResponder];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

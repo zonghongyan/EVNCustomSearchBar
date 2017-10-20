@@ -55,11 +55,14 @@
 - (void)initView
 {
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 44);
-
-    [self addSubview:self.cancelButton];
+    if (!_isHiddenCancelButton)
+    {
+        [self addSubview:self.cancelButton];
+        self.cancelButton.hidden = YES;
+    }
 
     [self addSubview:self.textField];
-    self.cancelButton.hidden = YES;
+
     //    self.backgroundColor = [UIColor colorWithRed:0.733 green:0.732 blue:0.756 alpha:1.000];
 
     [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
@@ -122,21 +125,15 @@
 
 - (void)ajustIconWith:(EVNCustomSearchBarIconAlign)iconAlign
 {
-    if (_iconAlign == EVNCustomSearchBarIconAlignCenter && ([self.text isKindOfClass:[NSNull class]] || !self.text || [self.text isEqualToString:@""] || self.text.length == 0))
+    if (_iconAlign == EVNCustomSearchBarIconAlignCenter && ([self.text isKindOfClass:[NSNull class]] || !self.text || [self.text isEqualToString:@""] || self.text.length == 0) && ![_textField isFirstResponder])
     {
         _iconCenterImgV.hidden = NO;
         _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
         _textField.textAlignment = NSTextAlignmentCenter;
 
         CGSize titleSize; // 输入的内容或者placeholder数据
-        //        if ([self.text isKindOfClass:[NSNull class]] || !self.text || [self.text isEqualToString:@""] || self.text.length == 0)
-        //        {
-        //            titleSize =  [self.text sizeWithAttributes: @{NSFontAttributeName:_textField.font}];
-        //        }
-        //        else
-        //        {
+
         titleSize =  [self.placeholder?:@"" sizeWithAttributes: @{NSFontAttributeName:_textField.font}];
-        //        }
 
         NSLog(@"----%f", _textField.frame.size.width);
         CGFloat x = _textField.frame.size.width/2.f - titleSize.width/2.f - 30;
@@ -230,15 +227,11 @@
     _inputView = inputView;
     _textField.inputView = _inputView;
 }
-//- (BOOL)isUserInteractionEnabled
-//{
-//    return YES;
-//}
-//
-//- (BOOL)canBecomeFirstResponder
-//{
-//    return YES;
-//}
+
+- (BOOL)isUserInteractionEnabled
+{
+    return YES;
+}
 
 - (void)setInputAccessoryView:(UIView *)inputAccessoryView
 {
@@ -401,7 +394,7 @@
 {
     if ([object isEqual:self] && [keyPath isEqualToString:@"frame"])
     {
-        //        _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
+        // _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
         NSLog(@"----%f", self.frame.size.width);
         [self ajustIconWith:_iconAlign];
     }
