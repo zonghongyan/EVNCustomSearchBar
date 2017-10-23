@@ -10,7 +10,6 @@ Born for iOS 11 SearchBar
 <img src="https://github.com/zonghongyan/EVNCustomSearchBar/blob/master/EVNCustomSearchBarDemo/EVNCustomSearchBar.gif" width="20%" height="20%" alt="other iPhone" >
 
 <img src="https://github.com/zonghongyan/EVNCustomSearchBar/blob/master/EVNCustomSearchBarDemo/EVNCustomSearchBar2.gif" width="20%" height="20%" alt="iPhone " >
-<img src="https://github.com/zonghongyan/EVNCustomSearchBar/blob/master/EVNCustomSearchBarDemo/EVNCustomSearchBar.gif" width="20%" height="20%" alt="Show the figureX" >
 
 
 ## Installation
