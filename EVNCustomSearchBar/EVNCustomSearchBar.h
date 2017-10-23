@@ -113,6 +113,7 @@ typedef NS_ENUM(NSUInteger, EVNCustomSearchBarIconAlign)
 
 @property (nonatomic, strong) UIView *inputView;
 
+- (BOOL)isFirstResponder;
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
 

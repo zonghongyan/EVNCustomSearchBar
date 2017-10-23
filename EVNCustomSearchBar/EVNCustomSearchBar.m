@@ -270,6 +270,11 @@
     }
 }
 
+- (BOOL)isFirstResponder
+{
+    return [_textField isFirstResponder];
+}
+
 - (BOOL)resignFirstResponder
 {
     return [_textField resignFirstResponder];
