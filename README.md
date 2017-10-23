@@ -31,7 +31,7 @@ platform :ios, '8.0'
 
 target '<Your Target Name>' do
 
-pod 'EVNCustomSearchBar', '~> 0.0.2'
+pod 'EVNCustomSearchBar', '~> 0.1.0'
 
 end
 ```
