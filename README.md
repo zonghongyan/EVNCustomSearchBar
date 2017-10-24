@@ -65,7 +65,7 @@ $ pod install
     self.navigationItem.titleView = self.searchBar;
     if (@available(iOS 11.0, *))
     {
-        [self.searchBar.heightAnchor constraintLessThanOrEqualToConstant:44].active = YES;
+        [self.searchBar.heightAnchor constraintLessThanOrEqualToConstant:kEVNScreenNavigationBarHeight].active = YES;
     }
     else
     {
@@ -80,7 +80,7 @@ $ pod install
 {
     if (!_searchBar)
     {
-        _searchBar = [[EVNCustomSearchBar alloc] initWithFrame:CGRectMake(0, 20, kEVNScreenWidth, 44)];
+        _searchBar = [[EVNCustomSearchBar alloc] initWithFrame:CGRectMake(0, kEVNScreenStatusBarHeight, kEVNScreenWidth, kEVNScreenNavigationBarHeight)];
 
         _searchBar.backgroundColor = [UIColor clearColor]; // 清空searchBar的背景色
         _searchBar.iconImage = [Helper imagesNamedFromCustomBundle:@"EVNCustomSearchBar.png"];
