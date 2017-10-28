@@ -172,6 +172,7 @@
 - (void)setText:(NSString *)text
 {
     _textField.text = text?:@"";
+    [self setIconAlign:_iconAlign];
 }
 
 - (void)setTextFont:(UIFont *)textFont
@@ -303,6 +304,15 @@
 #pragma mark - textfield delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(searchBarShouldBeginEditing:)])
+    {
+        return [self.delegate searchBarShouldBeginEditing:self];
+    }
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
     if(_iconAlignTemp == EVNCustomSearchBarIconAlignCenter)
     {
         self.iconAlign = EVNCustomSearchBarIconAlignLeft;
@@ -315,15 +325,6 @@
             // _textField.transform = CGAffineTransformMakeTranslation(-_cancelButton.frame.size.width,0);
         }];
     }
-    if (self.delegate && [self.delegate respondsToSelector:@selector(searchBarShouldBeginEditing:)])
-    {
-        return [self.delegate searchBarShouldBeginEditing:self];
-    }
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
     if (self.delegate && [self.delegate respondsToSelector:@selector(searchBarTextDidBeginEditing:)])
     {
         [self.delegate searchBarTextDidBeginEditing:self];
