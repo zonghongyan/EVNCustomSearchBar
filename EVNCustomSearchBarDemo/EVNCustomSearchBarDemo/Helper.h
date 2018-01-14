@@ -13,8 +13,6 @@
 
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
-+ (UIImage *)imagesNamedFromCustomBundle:(NSString *)imgName;
-
 + (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
 
 @end

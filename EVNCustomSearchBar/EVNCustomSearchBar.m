@@ -10,12 +10,14 @@
 
 @interface EVNCustomSearchBar()<UITextFieldDelegate>
 {
-    UIImageView *_iconImgV;
-    UIImageView *_iconCenterImgV;
+//    UIImageView *_iconImgV;
+//    UIImageView *_iconCenterImgV;
     EVNCustomSearchBarIconAlign _iconAlignTemp;
     UITextField *_textField;
 }
 
+@property (nonatomic, strong) UIButton *iconImgButton;
+@property (nonatomic, strong) UIButton *iconCenterImgButton;
 @end
 
 @implementation EVNCustomSearchBar
@@ -64,7 +66,6 @@
     [self addSubview:self.textField];
 
     //    self.backgroundColor = [UIColor colorWithRed:0.733 green:0.732 blue:0.756 alpha:1.000];
-
     [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
 }
 
@@ -108,6 +109,7 @@
         _textField.borderStyle = UITextBorderStyleNone;
         _textField.layer.cornerRadius = 3.0f;
         _textField.layer.masksToBounds = YES;
+        _textField.leftView.contentMode = UIViewContentModeScaleAspectFit;
         _textField.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     }
     return _textField;
@@ -123,11 +125,36 @@
     [self ajustIconWith:_iconAlign];
 }
 
+- (UIButton *)iconImgButton
+{
+    if (!_iconImgButton)
+    {
+        _iconImgButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _iconImgButton.imageEdgeInsets = UIEdgeInsetsMake(5, 7, 5, 7); // 参数分别是top, left, bottom, right
+        _iconImgButton.frame = CGRectMake(5, 5, _textField.frame.size.height + 4, _textField.frame.size.height);
+        _iconImgButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _iconImgButton;
+}
+
+- (UIButton *)iconCenterImgButton
+{
+    if (!_iconCenterImgButton)
+    {
+        _iconCenterImgButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _iconCenterImgButton.frame = self.iconImgButton.frame;
+        _iconCenterImgButton.imageEdgeInsets = UIEdgeInsetsMake(5, 7, 5, 7); // 参数分别是top, left, bottom, right
+        _iconCenterImgButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_textField addSubview:_iconCenterImgButton];
+    }
+    return _iconCenterImgButton;
+}
+
 - (void)ajustIconWith:(EVNCustomSearchBarIconAlign)iconAlign
 {
     if (_iconAlign == EVNCustomSearchBarIconAlignCenter && ([self.text isKindOfClass:[NSNull class]] || !self.text || [self.text isEqualToString:@""] || self.text.length == 0) && ![_textField isFirstResponder])
     {
-        _iconCenterImgV.hidden = NO;
+        self.iconCenterImgButton.hidden = NO;
         _textField.frame = CGRectMake(7, 7, self.frame.size.width - 7*2, 30);
         _textField.textAlignment = NSTextAlignmentCenter;
 
@@ -135,32 +162,21 @@
 
         titleSize =  [self.placeholder?:@"" sizeWithAttributes: @{NSFontAttributeName:_textField.font}];
 
-        NSLog(@"----%f", _textField.frame.size.width);
+//        NSLog(@"----%f", _textField.frame.size.width);
         CGFloat x = _textField.frame.size.width/2.f - titleSize.width/2.f - 30;
-        if (!_iconCenterImgV)
-        {
-            _iconCenterImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EVNCustomSearchBar.bundle/EVNCustomSearchBar"]];
-            _iconCenterImgV.contentMode = UIViewContentModeScaleAspectFit;
-            [_textField addSubview:_iconCenterImgV];
-        }
-
-        //        [UIView animateWithDuration:1 animations:^{
-        _iconCenterImgV.frame = CGRectMake(x > 0 ?x:0, 0, _iconCenterImgV.frame.size.width, _iconCenterImgV.frame.size.height);
-        _iconCenterImgV.hidden = x > 0 ? NO : YES;
-        _textField.leftView = x > 0 ? nil : _iconImgV;
+        [self.iconCenterImgButton setImage:_iconImage forState:UIControlStateNormal];
+        _iconCenterImgButton.frame = CGRectMake(x > 0 ?x:0, 0, self.iconImgButton.frame.size.width, self.iconImgButton.frame.size.height);
+        _iconCenterImgButton.hidden = x > 0 ? NO : YES;
+        _textField.leftView = x > 0 ? nil : _iconImgButton;
         _textField.leftViewMode =  x > 0 ? UITextFieldViewModeNever : UITextFieldViewModeAlways;
-        //        }];
     }
     else
     {
-        _iconCenterImgV.hidden = YES;
-        [UIView animateWithDuration:1 animations:^{
-            _textField.textAlignment = NSTextAlignmentLeft;
-            _iconImgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"EVNCustomSearchBar.bundle/EVNCustomSearchBar"]];
-            _iconImgV.contentMode = UIViewContentModeScaleAspectFit;
-            _textField.leftView = _iconImgV;
-            _textField.leftViewMode =  UITextFieldViewModeAlways;
-        }];
+        _iconCenterImgButton.hidden = YES;
+        _textField.textAlignment = NSTextAlignmentLeft;
+        [_iconImgButton setImage:_iconImage forState:UIControlStateNormal];
+        _textField.leftView = _iconImgButton;
+        _textField.leftViewMode =  UITextFieldViewModeAlways;
     }
 }
 
@@ -195,9 +211,14 @@
 
 - (void)setIconImage:(UIImage *)iconImage
 {
-    _iconImage = iconImage;
-    ((UIImageView*)_textField.leftView).image = _iconImage;
-    _textField.leftViewMode =  UITextFieldViewModeAlways;
+    if (!_iconImage)
+    {
+        _iconImage = iconImage;
+
+        [self.iconImgButton setImage:_iconImage forState:UIControlStateNormal];
+        _textField.leftView = self.iconImgButton;
+        _textField.leftViewMode =  UITextFieldViewModeAlways;
+    }
 }
 
 - (void)setPlaceholder:(NSString *)placeholder
@@ -255,8 +276,7 @@
         [_textField setValue:_placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
     }
     else
-    {//TODO: ///asdfasdf
-        //        _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:@{NSForegroundColorAttributeName:placeholderColor}];
+    {
         if ([self.placeholder isKindOfClass:[NSNull class]] || !self.placeholder || [self.placeholder isEqualToString:@""])
         {
             //

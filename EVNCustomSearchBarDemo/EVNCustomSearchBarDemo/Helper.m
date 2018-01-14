@@ -31,14 +31,6 @@
     return colorImage;
 }
 
-+ (UIImage *)imagesNamedFromCustomBundle:(NSString *)imgName
-{
-    NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"EVNCustomSearchBar.bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
-    NSString *img_path = [bundle pathForResource:imgName ofType:@"png"];
-    return [UIImage imageWithContentsOfFile:img_path];
-}
-
 + (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha
 {
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];

@@ -13,11 +13,11 @@
 		8B34A46E1F7CCD3500F58654 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B34A46D1F7CCD3500F58654 /* Assets.xcassets */; };
 		8B34A4711F7CCD3500F58654 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B34A46F1F7CCD3500F58654 /* LaunchScreen.storyboard */; };
 		8B34A4741F7CCD3500F58654 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A4731F7CCD3500F58654 /* main.m */; };
-		8B34A47E1F7CCE1A00F58654 /* EVNCustomSearchBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B34A47B1F7CCE1A00F58654 /* EVNCustomSearchBar.bundle */; };
 		8B34A47F1F7CCE1A00F58654 /* EVNCustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A47D1F7CCE1A00F58654 /* EVNCustomSearchBar.m */; };
 		8B34A4821F7CED6300F58654 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A4811F7CED6300F58654 /* LeftViewController.m */; };
 		8B34A4851F7CEEA400F58654 /* LeftRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A4841F7CEEA400F58654 /* LeftRightViewController.m */; };
 		8B34A4891F7CEF2800F58654 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B34A4881F7CEF2800F58654 /* Helper.m */; };
+		8BF8CAEC200B117E006577F9 /* EVNCustomSearchBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BF8CAEB200B117E006577F9 /* EVNCustomSearchBar.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,6 @@
 		8B34A4701F7CCD3500F58654 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B34A4721F7CCD3500F58654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B34A4731F7CCD3500F58654 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8B34A47B1F7CCE1A00F58654 /* EVNCustomSearchBar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EVNCustomSearchBar.bundle; sourceTree = "<group>"; };
 		8B34A47C1F7CCE1A00F58654 /* EVNCustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVNCustomSearchBar.h; sourceTree = "<group>"; };
 		8B34A47D1F7CCE1A00F58654 /* EVNCustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVNCustomSearchBar.m; sourceTree = "<group>"; };
 		8B34A4801F7CED6300F58654 /* LeftViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		8B34A4861F7CEEDD00F58654 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		8B34A4871F7CEF2800F58654 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		8B34A4881F7CEF2800F58654 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		8BF8CAEB200B117E006577F9 /* EVNCustomSearchBar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EVNCustomSearchBar.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +97,9 @@
 		8B34A47A1F7CCE1A00F58654 /* EVNCustomSearchBar */ = {
 			isa = PBXGroup;
 			children = (
-				8B34A47B1F7CCE1A00F58654 /* EVNCustomSearchBar.bundle */,
 				8B34A47C1F7CCE1A00F58654 /* EVNCustomSearchBar.h */,
 				8B34A47D1F7CCE1A00F58654 /* EVNCustomSearchBar.m */,
+				8BF8CAEB200B117E006577F9 /* EVNCustomSearchBar.bundle */,
 			);
 			name = EVNCustomSearchBar;
 			path = ../EVNCustomSearchBar;
@@ -163,9 +163,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B34A47E1F7CCE1A00F58654 /* EVNCustomSearchBar.bundle in Resources */,
 				8B34A4711F7CCD3500F58654 /* LaunchScreen.storyboard in Resources */,
 				8B34A46E1F7CCD3500F58654 /* Assets.xcassets in Resources */,
+				8BF8CAEC200B117E006577F9 /* EVNCustomSearchBar.bundle in Resources */,
 				8B34A46C1F7CCD3500F58654 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
