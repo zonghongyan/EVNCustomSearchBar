@@ -83,7 +83,8 @@ $ pod install
         _searchBar = [[EVNCustomSearchBar alloc] initWithFrame:CGRectMake(0, kEVNScreenStatusBarHeight, kEVNScreenWidth, kEVNScreenNavigationBarHeight)];
 
         _searchBar.backgroundColor = [UIColor clearColor]; // 清空searchBar的背景色
-        _searchBar.iconImage = [Helper imagesNamedFromCustomBundle:@"EVNCustomSearchBar.png"];
+        _searchBar.iconImage = [UIImage imageNamed:@"EVNCustomSearchBar.bundle/searchImageBlack.png"];
+//        _searchBar.iconImage = [UIImage imageNamed:@"EVNCustomSearchBar.bundle/searchImageTextColor.png"];
         _searchBar.iconAlign = EVNCustomSearchBarIconAlignCenter;
         [_searchBar setPlaceholder:@"请输入关键字"];  // 搜索框的占位符
         _searchBar.placeholderColor = TextGrayColor;
