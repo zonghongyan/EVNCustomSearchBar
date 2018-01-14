@@ -1,5 +1,5 @@
 ## EVNCustomSearchBar
-Born for iOS 11 SearchBar
+🔍Born for iOS 11 and iPhone X SearchBar
 
 [![Build Status](https://travis-ci.org/zonghongyan/EVNCustomSearchBar.svg?branch=master)](https://travis-ci.org/zonghongyan/EVNTouchIDDemo)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EVNCustomSearchBar.svg)](https://img.shields.io/cocoapods/v/EVNCustomSearchBar.svg)
